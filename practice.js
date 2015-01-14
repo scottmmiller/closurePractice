@@ -10,11 +10,14 @@ var outer = function(){
 //Invoke outer saving the return value into another variable called 'inner'.
 
   //Code Here
+var inner = outer();
+
+
 
 //Once you do that, invoke inner.
 
   //Code Here
-
+inner();
 
 
 //Next problem
@@ -33,7 +36,9 @@ var callFriend = function(){
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
   //Code Here
+var calling = callFriend();
 
+calling('435-215-9248');
 
 
 //Next Problem
@@ -51,7 +56,13 @@ var callFriend = function(){
   count() // 3
   count() // 4
 
-
+var makeCounter = function () {
+  var num = 0;
+  return function () {
+    num +=1;
+    return num;
+  };
+};
 
 //Next Problem
 
@@ -60,10 +71,34 @@ var callFriend = function(){
 /*
   Write a function that accepts another function as it's only argument and returns a new function
   (which invokes the original function that was passed in) that can only ever be executed once.
-  Once completed, add a second arguments that allows the function to be invoked N number of times.
+
+  Once completed, add a second argument that allows the function to be invoked N number of times.
   After the function has been called N number of times, console.log('STAHHP');
 */
+debugger;
+var outerFn = function (n, fn) {
+  return function() {
+    if(n > 0) {
+      n--;
+      return fn();
+    }
+    else {
+      console.log('STAHHP');
+    };
+  };
+};
+
+var add = function () {
+  return 1 + 1;
+};
+
+var test = outerFn(1, add);
+test();
 
 
+var sub = function () {
+  return 5 - 1;
+};
 
-
+var test = outerFn(3, sub);
+test();
